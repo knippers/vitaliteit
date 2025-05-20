@@ -1,127 +1,255 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="theme-color" content="#121212"/>
-  <link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#121212" />
+    <link rel="manifest" href="manifest.json">
     <style>
-    body{font-family:Arial,sans-serif;margin:0;padding:1em;}label{display:block;margin-top:10px;}input,select,textarea{width:100%;padding:8px;margin-top:4px;box-sizing:border-box;}button{margin-top:15px;padding:10px 15px;}table{width:100%;border-collapse:collapse;margin-top:30px;}th,td{border:1px solid #ccc;padding:8px;text-align:left;}th{background:#eee;}@media(max-width:600px){table,thead,tbody,th,td,tr{display:block;}thead{display:none;}td{position:relative;padding-left:50%;}td::before{position:absolute;left:10px;width:45%;white-space:nowrap;font-weight:bold;}}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 1em;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background: #eee;
+        }
+
+        @media(max-width:600px) {
+
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+
+            thead {
+                display: none;
+            }
+
+            td {
+                position: relative;
+                padding-left: 50%;
+            }
+
+            td::before {
+                position: absolute;
+                left: 10px;
+                width: 45%;
+                white-space: nowrap;
+                font-weight: bold;
+            }
+        }
     </style>
-  <title>Dagboek Gezondheid</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Dagboek Gezondheid</title>
 </head>
+
 <body>
-  <h2>Dagboek Gezondheid</h2>
-  <form id="dagForm">
-    <label>Datum <input type="date" id="datum" required /></label>
-    <label>Dag
-      <select id="dag">
-        <option>Maandag</option><option>Dinsdag</option><option>Woensdag</option>
-        <option>Donderdag</option><option>Vrijdag</option><option>Zaterdag</option><option>Zondag</option>
-      </select>
-    </label>
-    <label>Werkdag
-      <select id="werkdag"><option>Ja</option><option>Nee</option></select>
-    </label>
-    <label>Stappen <input type="number" id="stappen" /></label>
-    <label>Calorieën <input type="number" id="calorieen" /></label>
-    <label>Zoneminuten <input type="number" id="zoneminuten" /></label>
-    <label>Stress
-      <select id="stress">
-        <option>Heel ontspannen</option><option>Ontspannen</option><option>Neutraal</option>
-        <option>Gespannen</option><option>Zeer gespannen</option>
-      </select>
-    </label>
-    <label>Slaapscore <input type="number" id="slaapscore" /></label>
-    <label>Slaapduur <input type="number" step="0.1" id="slaapduur" /></label>
-    <label>Slaapervaring <input type="text" id="slaapervaring" /></label>
-    <label>Rusthartslag <input type="number" id="rusthartslag" /></label>
-    <label>Bijzonderheden <textarea id="bijzonderheden"></textarea></label>
-    <button type="submit">Opslaan</button>
-  </form>
+    <h2>Dagboek Gezondheid</h2>
+    <form id="dagForm">
+        <label>Datum <input type="date" id="datum" required /></label>
+        <label>Dag
+            <select id="dag">
+                <option>Maandag</option>
+                <option>Dinsdag</option>
+                <option>Woensdag</option>
+                <option>Donderdag</option>
+                <option>Vrijdag</option>
+                <option>Zaterdag</option>
+                <option>Zondag</option>
+            </select>
+        </label>
+        <label>Werkdag
+            <select id="werkdag">
+                <option>Ja</option>
+                <option>Nee</option>
+            </select>
+        </label>
+        <label>Stappen <input type="number" id="stappen" /></label>
+        <label>Calorieën <input type="number" id="calorieen" /></label>
+        <label>Zoneminuten <input type="number" id="zoneminuten" /></label>
+        <label>Stress
+            <select id="stress">
+                <option>Heel ontspannen</option>
+                <option>Ontspannen</option>
+                <option>Neutraal</option>
+                <option>Gespannen</option>
+                <option>Zeer gespannen</option>
+            </select>
+        </label>
+        <label>Slaapscore <input type="number" id="slaapscore" /></label>
+        <label>Slaapduur <input type="number" step="0.1" id="slaapduur" /></label>
+        <label>Slaapervaring <select id="slaapervaring">
+                <option>Heel goed</option>
+                <option>Goed</option>
+                <option>Neutraal</option>
+                <option>Slecht</option>
+                <option>Zeer slecht</option>
+            </select>
+        </label>
+        <label>Rusthartslag <input type="number" id="rusthartslag" /></label>
+        <label>Bijzonderheden <textarea id="bijzonderheden"></textarea></label>
+        <button type="submit">Opslaan</button>
+    </form>
 
-  <button onclick="exportCSV()">Exporteer als CSV</button>
+    <button onclick="exportCSV()">Exporteer als CSV</button>
 
-  <h3>Ingevoerde gegevens</h3>
-  <table id="dataTable">
-    <thead>
-      <tr>
-        <th>Meetdag</th><th>Dag</th><th>Werkdag</th><th>Stappen</th><th>Calorieën</th><th>Zoneminuten</th>
-        <th>Stress</th><th>Slaapscore</th><th>Slaapduur</th><th>Slaapervaring</th><th>Rusthartslag</th><th>Bijzonderheden</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+    <h3>Ingevoerde gegevens</h3>
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Meetdag</th>
+                <th>Dag</th>
+                <th>Werkdag</th>
+                <th>Stappen</th>
+                <th>Calorieën</th>
+                <th>Zoneminuten</th>
+                <th>Stress</th>
+                <th>Slaapscore</th>
+                <th>Slaapduur</th>
+                <th>Slaapervaring</th>
+                <th>Rusthartslag</th>
+                <th>Bijzonderheden</th>
+                <th>Actie</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
 
-  <script>
-    const datumEl = document.getElementById('datum');
-    const dagEl = document.getElementById('dag');
-    datumEl.valueAsDate = new Date();
-    dagEl.value = ['Zondag','Maandag','Dinsdag','Woensdag','Donderdag','Vrijdag','Zaterdag'][new Date().getDay()];
+    <script>
 
-    document.getElementById('dagForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      const data = {
-        datum: datumEl.value,
-        dag: dagEl.value,
-        werkdag: document.getElementById('werkdag').value,
-        stappen: document.getElementById('stappen').value,
-        calorieen: document.getElementById('calorieen').value,
-        zoneminuten: document.getElementById('zoneminuten').value,
-        stress: document.getElementById('stress').value,
-        slaapscore: document.getElementById('slaapscore').value,
-        slaapduur: document.getElementById('slaapduur').value,
-        slaapervaring: document.getElementById('slaapervaring').value,
-        rusthartslag: document.getElementById('rusthartslag').value,
-        bijzonderheden: document.getElementById('bijzonderheden').value
-      };
-      localStorage.setItem(data.datum, JSON.stringify(data));
-      toonData();
-      this.reset();
-      datumEl.valueAsDate = new Date();
-      dagEl.value = ['Zondag','Maandag','Dinsdag','Woensdag','Donderdag','Vrijdag','Zaterdag'][new Date().getDay()];
-    });
+        const datumEl = document.getElementById('datum');
+        const dagEl = document.getElementById('dag');
+        datumEl.valueAsDate = new Date();
+        dagEl.value = ['Zondag', 'Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag'][new Date().getDay()];
 
-    function toonData(){
-      const tbody = document.querySelector('#dataTable tbody');
-      tbody.innerHTML = '';
-      const keys = Object.keys(localStorage).sort();
-      let meetdag = 1;
-      keys.forEach(key => {
-        try {
-          const d = JSON.parse(localStorage.getItem(key));
-          if(d && d.datum){
-            const row = tbody.insertRow();
-            const cols = [
-              meetdag++, d.dag, d.werkdag, d.stappen, d.calorieen, d.zoneminuten,
-              d.stress, d.slaapscore, d.slaapduur, d.slaapervaring, d.rusthartslag, d.bijzonderheden
-            ];
-            cols.forEach(val => row.insertCell().textContent = val || '');
-          }
-        } catch {}
-      });
-    }
+        document.getElementById('dagForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const data = {
+                datum: datumEl.value,
+                dag: dagEl.value,
+                werkdag: document.getElementById('werkdag').value,
+                stappen: document.getElementById('stappen').value,
+                calorieen: document.getElementById('calorieen').value,
+                zoneminuten: document.getElementById('zoneminuten').value,
+                stress: document.getElementById('stress').value,
+                slaapscore: document.getElementById('slaapscore').value,
+                slaapduur: document.getElementById('slaapduur').value,
+                slaapervaring: document.getElementById('slaapervaring').value,
+                rusthartslag: document.getElementById('rusthartslag').value,
+                bijzonderheden: document.getElementById('bijzonderheden').value
+            };
+            localStorage.setItem(data.datum, JSON.stringify(data));
+            toonData();
+            this.reset();
+            datumEl.valueAsDate = new Date();
+            dagEl.value = ['Zondag', 'Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag'][new Date().getDay()];
+        });
 
-    function exportCSV(){
-      const keys = Object.keys(localStorage).sort();
-      let csv = 'Meetdag,Dag,Werkdag,Stappen,Calorieën,Zoneminuten,Stress,Slaapscore,Slaapduur,Slaapervaring,Rusthartslag,Bijzonderheden\\n';
-      let meetdag = 1;
-      keys.forEach(key => {
-        const d = JSON.parse(localStorage.getItem(key));
-        csv += [
-          meetdag++, d.dag, d.werkdag, d.stappen, d.calorieen, d.zoneminuten,
-          d.stress, d.slaapscore, d.slaapduur, d.slaapervaring, d.rusthartslag, `"${d.bijzonderheden}"`
-        ].join(',') + '\\n';
-      });
-      const blob = new Blob([csv], { type: 'text/csv' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'dagboek_export.csv';
-      a.click();
-    }
+        function toonData() {
+            const tbody = document.querySelector('#dataTable tbody');
+            tbody.innerHTML = '';
+            const keys = Object.keys(localStorage).sort();
+            let meetdag = 1;
+            keys.forEach(key => {
+                try {
+                    const d = JSON.parse(localStorage.getItem(key));
+                    const datum = d.datum;
+                    if (d && d.datum) {
+                        const row = tbody.insertRow();
+                        const cols = [
+                            meetdag++, d.dag, d.werkdag, d.stappen, d.calorieen, d.zoneminuten,
+                            d.stress, d.slaapscore, d.slaapduur, d.slaapervaring, d.rusthartslag, d.bijzonderheden
+                        ];
+                        cols.forEach(val => row.insertCell().textContent = val || '');
+                        const editBtn = document.createElement('button');
+                        editBtn.textContent = 'Bewerk';
+                        editBtn.onclick = () => laadDataVoorBewerken(datum);
+                        const editCell = row.insertCell();
+                        editCell.appendChild(editBtn);
+                    }
+                } catch { }
+            });
+        }
 
-    toonData();
-  </script>
+        function exportCSV() {
+            const keys = Object.keys(localStorage).sort();
+            let csv = 'Meetdag,Dag,Werkdag,Stappen,Calorieën,Zoneminuten,Stress,Slaapscore,Slaapduur,Slaapervaring,Rusthartslag,Bijzonderheden\\n';
+            let meetdag = 1;
+            keys.forEach(key => {
+                const d = JSON.parse(localStorage.getItem(key));
+                csv += [
+                    meetdag++, d.dag, d.werkdag, d.stappen, d.calorieen, d.zoneminuten,
+                    d.stress, d.slaapscore, d.slaapduur, d.slaapervaring, d.rusthartslag, `"${d.bijzonderheden}"`
+                ].join(',') + '\\n';
+            });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'dagboek_export.csv';
+            a.click();
+        }
+
+        function laadDataVoorBewerken(datum) {
+            const d = JSON.parse(localStorage.getItem(datum));
+            if (!d)
+                return;
+
+            document.getElementById('datum').value = datum;
+            document.getElementById('dag').value = d.dag;
+            document.getElementById('werkdag').value = d.werkdag;
+            document.getElementById('stappen').value = d.stappen;
+            document.getElementById('calorieen').value = d.calorieen;
+            document.getElementById('zoneminuten').value = d.zoneminuten;
+            document.getElementById('stress').value = d.stress;
+            document.getElementById('slaapscore').value = d.slaapscore;
+            document.getElementById('slaapduur').value = d.slaapduur;
+            document.getElementById('slaapervaring').value = d.slaapervaring;
+            document.getElementById('rusthartslag').value = d.rusthartslag;
+            document.getElementById('bijzonderheden').value = d.bijzonderheden;
+        }
+
+        toonData();
+    </script>
 </body>
+
 </html>
