@@ -226,23 +226,27 @@
             const keys = Object.keys(localStorage).sort();
             let meetdag = 1;
             keys.forEach(key => {
-                try {
-                    const d = JSON.parse(localStorage.getItem(key));
-                    const datum = d.datum;
-                    if (d && d.datum) {
-                        const row = tbody.insertRow();
-                        const cols = [
-                            meetdag++, d.dag, d.werkdag, d.stappen, d.calorieen, d.zoneminuten,
-                            d.stress, d.slaapscore, d.slaapduur, d.slaapervaring, d.rusthartslag, d.bijzonderheden
-                        ];
-                        cols.forEach(val => row.insertCell().textContent = val || '');
-                        const editBtn = document.createElement('button');
-                        editBtn.textContent = 'Bewerk';
-                        editBtn.onclick = () => laadDataVoorBewerken(datum);
-                        const editCell = row.insertCell();
-                        editCell.appendChild(editBtn);
-                    }
-                } catch { }
+
+                if (key !== "theme") {
+
+                    try {
+                        const d = JSON.parse(localStorage.getItem(key));
+                        const datum = d.datum;
+                        if (d && d.datum) {
+                            const row = tbody.insertRow();
+                            const cols = [
+                                meetdag++, d.dag, d.werkdag, d.stappen, d.calorieen, d.zoneminuten,
+                                d.stress, d.slaapscore, d.slaapduur, d.slaapervaring, d.rusthartslag, d.bijzonderheden
+                            ];
+                            cols.forEach(val => row.insertCell().textContent = val || '');
+                            const editBtn = document.createElement('button');
+                            editBtn.textContent = 'Bewerk';
+                            editBtn.onclick = () => laadDataVoorBewerken(datum);
+                            const editCell = row.insertCell();
+                            editCell.appendChild(editBtn);
+                        }
+                    } catch { }
+                }
             });
         }
 
@@ -251,11 +255,13 @@
             let csv = 'Meetdag,Dag,Werkdag,Stappen,Calorieën,Zoneminuten,Stress,Slaapscore,Slaapduur,Slaapervaring,Rusthartslag,Bijzonderheden\\n';
             let meetdag = 1;
             keys.forEach(key => {
-                const d = JSON.parse(localStorage.getItem(key));
-                csv += [
-                    meetdag++, d.dag, d.werkdag, d.stappen, d.calorieen, d.zoneminuten,
-                    d.stress, d.slaapscore, d.slaapduur, d.slaapervaring, d.rusthartslag, `"${d.bijzonderheden}"`
-                ].join(',') + '\\n';
+                if (key !== "theme") {
+                    const d = JSON.parse(localStorage.getItem(key));
+                    csv += [
+                        meetdag++, d.dag, d.werkdag, d.stappen, d.calorieen, d.zoneminuten,
+                        d.stress, d.slaapscore, d.slaapduur, d.slaapervaring, d.rusthartslag, `"${d.bijzonderheden}"`
+                    ].join(',') + '\\n';
+                }
             });
             const blob = new Blob([csv], { type: 'text/csv' });
             const url = URL.createObjectURL(blob);
@@ -299,7 +305,7 @@
                 document.body.classList.add('dark');
                 document.getElementById('themeToggle').textContent = '☀️';
             } else {
-               document.getElementById('themeToggle').textContent = '🌙';
+                document.getElementById('themeToggle').textContent = '🌙';
             }
         })();
     </script>
